@@ -1,19 +1,39 @@
 package Utilities;
 
-public class TheatreLinkedList<T>{
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class TheatreLinkedList<T> implements Iterable<T>{
 
     private Node head;
     private class Node{
-        public Node(T data){
+        private T data;
+        private Node next = null;
+        Node(T data){
            this.data = data;
         }
-        public T data;
-        public Node next = null;
+
+        public T getData() {
+            return data;
+        }
+
+        public void setData(T data) {
+            this.data = data;
+        }
+
+        public Node getNext() {
+            return next;
+        }
+
+        public void setNext(Node next) {
+            this.next = next;
+        }
+
     }
 
     public void addFront(T data){
         var newNode = new Node(data);
-        newNode.next = head;
+        newNode.setNext(head);
         head = newNode;
     }
 
@@ -29,7 +49,7 @@ public class TheatreLinkedList<T>{
                    return i;
                }
                else{
-                   tempNode = tempNode.next;
+                   tempNode = tempNode.getNext();
                }
             }
     }
@@ -42,17 +62,17 @@ public class TheatreLinkedList<T>{
     public void remove(int index) throws  IndexOutOfBoundsException{
             var tempNode = head;
             if(index == 0){
-                head = head.next;
+                head = head.getNext();
             }
             for (int i = 0; tempNode != null && index >= 0; i++){
                 // Stop at the node before
-                if (i == index - 1 && tempNode.next != null){
+                if (i == index - 1 && tempNode.getNext() != null){
                     // Set the next of the current node to be the next of the following node
-                   tempNode.next = tempNode.next.next;
+                   tempNode.setNext(tempNode.getNext().getNext());
                    return;
                 }
                 else{
-                    tempNode = tempNode.next;
+                    tempNode = tempNode.getNext();
                 }
             }
         // If no return happened at this point an exception can be thrown
@@ -67,10 +87,37 @@ public class TheatreLinkedList<T>{
                 return tempNode.data;
             }
             // Chain won't break because there can't be gaps
-            tempNode = tempNode.next;
+            tempNode = tempNode.getNext();
         }
         // If no return happened at this point an exception can be thrown
         throw new IndexOutOfBoundsException("Index " + index + " is not within the bounds of the list." );
     }
 
+    public Iterator<T> iterator() {
+        return new TheatreIterator(this);
+    }
+    // Implementation of iterable/iterator based on https://codereview.stackexchange.com/questions/141560/an-iterable-implementation-of-linkedlist
+    // and https://www.geeksforgeeks.org/java-implementing-iterator-and-iterable-interface/
+    private class TheatreIterator implements Iterator<T>{
+        private Node current;
+        public TheatreIterator(TheatreLinkedList<T> list){
+           current = list.getHead();
+        }
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        public T next() {
+            if(!hasNext()){
+                throw new NoSuchElementException("Iterator Exceeded");
+            }
+            T data = current.getData();
+            current = current.getNext();
+            return data;
+        }
+    }
+
+    private Node getHead() {
+        return head;
+    }
 }
