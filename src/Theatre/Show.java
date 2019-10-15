@@ -10,11 +10,11 @@ public class Show {
     private LocalDate startDate;
     private LocalDate endDate;
     private TheatreLinkedList<Performance> Performances = new TheatreLinkedList<>();
-    private int balconyCost;
-    private int circleCost;
-    private int stallsCost;
+    private int balconyPrice;
+    private int circlePrice;
+    private int stallsPrice;
 
-    public Show(String name, LocalDate startDate, LocalDate endDate, int balconyCost, int circleCost, int stallsCost){
+    public Show(String name, LocalDate startDate, LocalDate endDate, int balconyPrice, int circlePrice, int stallsPrice){
         setName(name);
         // If the set failed, set it to unknown
         if(this.name == null){
@@ -23,9 +23,9 @@ public class Show {
 
         setStartDate(startDate);
         setEndDate(endDate);
-        setBalconyCost(balconyCost);
-        setCircleCost(circleCost);
-        setStallsCost(stallsCost);
+        setBalconyPrice(balconyPrice);
+        setCirclePrice(circlePrice);
+        setStallsPrice(stallsPrice);
     }
     public String getName() {
         return name;
@@ -57,27 +57,27 @@ public class Show {
         this.endDate = endDate;
     }
 
-    public int getBalconyCost() {
-        return balconyCost;
+    public int getBalconyPrice() {
+        return balconyPrice;
     }
 
-    public void setBalconyCost(int balconyCost) {
-        this.balconyCost = balconyCost;
+    public void setBalconyPrice(int balconyPrice) {
+        this.balconyPrice = balconyPrice;
     }
 
-    public int getCircleCost() {
-        return circleCost;
+    public int getCirclePrice() {
+        return circlePrice;
     }
 
-    public void setCircleCost(int circleCost) {
-        this.circleCost = circleCost;
+    public void setCirclePrice(int circlePrice) {
+        this.circlePrice = circlePrice;
     }
 
-    public int getStallsCost() {
-        return stallsCost;
+    public int getStallsPrice() {
+        return stallsPrice;
     }
 
-    public void setStallsCost(int stallsCost) {
-        this.stallsCost = stallsCost;
+    public void setStallsPrice(int stallsPrice) {
+        this.stallsPrice = stallsPrice;
     }
 }

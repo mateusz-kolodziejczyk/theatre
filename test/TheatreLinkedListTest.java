@@ -40,16 +40,16 @@ public class TheatreLinkedListTest {
 
     @Test
     public void lengthTest(){
-        assertEquals(3, testLinkedList.length());
+        assertEquals(3, testLinkedList.size());
         testLinkedList.addFront("hey ");
-        assertEquals(4, testLinkedList.length());
+        assertEquals(4, testLinkedList.size());
     }
 
     @Test
     public void removeAllTest(){
-        assertEquals(4, testLinkedList.length());
+        assertEquals(4, testLinkedList.size());
         testLinkedList.removeAll();
-        assertEquals(0, testLinkedList.length());
+        assertEquals(0, testLinkedList.size());
     }
     @Test
     public void removeTest(){
@@ -61,7 +61,7 @@ public class TheatreLinkedListTest {
             testLinkedList.remove(4);
         });
         testLinkedList.remove(2);
-        assertEquals(3, testLinkedList.length());
+        assertEquals(3, testLinkedList.size());
         assertEquals("doing.", testLinkedList.get(2));
     }
 

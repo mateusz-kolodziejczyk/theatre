@@ -1,7 +1,9 @@
 package Utilities;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.function.Consumer;
 
 public class TheatreLinkedList<T> implements Iterable<T>{
 
@@ -31,6 +33,16 @@ public class TheatreLinkedList<T> implements Iterable<T>{
 
     }
 
+    public boolean isEmpty(){
+        if(head == null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+
     public void addFront(T data){
         var newNode = new Node(data);
         newNode.setNext(head);
@@ -41,7 +53,7 @@ public class TheatreLinkedList<T> implements Iterable<T>{
 
     }
 
-    public int length(){
+    public int size(){
             var tempNode = head;
             // Continue loop until end of list when it should return the number
             for (int i = 0;;i++){
@@ -59,7 +71,7 @@ public class TheatreLinkedList<T> implements Iterable<T>{
        head = null;
     }
 
-    public void remove(int index) throws  IndexOutOfBoundsException{
+    public T remove(int index) throws  IndexOutOfBoundsException{
             var tempNode = head;
             if(index == 0){
                 head = head.getNext();
@@ -69,7 +81,7 @@ public class TheatreLinkedList<T> implements Iterable<T>{
                 if (i == index - 1 && tempNode.getNext() != null){
                     // Set the next of the current node to be the next of the following node
                    tempNode.setNext(tempNode.getNext().getNext());
-                   return;
+                    return null;
                 }
                 else{
                     tempNode = tempNode.getNext();
@@ -92,6 +104,8 @@ public class TheatreLinkedList<T> implements Iterable<T>{
         // If no return happened at this point an exception can be thrown
         throw new IndexOutOfBoundsException("Index " + index + " is not within the bounds of the list." );
     }
+
+
 
     public Iterator<T> iterator() {
         return new TheatreIterator(this);
