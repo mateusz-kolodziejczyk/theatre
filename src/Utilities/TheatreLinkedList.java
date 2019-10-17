@@ -71,7 +71,7 @@ public class TheatreLinkedList<T> implements Iterable<T>{
        head = null;
     }
 
-    public T remove(int index) throws  IndexOutOfBoundsException{
+    public void removeIndex(int index) throws  IndexOutOfBoundsException{
             var tempNode = head;
             if(index == 0){
                 head = head.getNext();
@@ -81,7 +81,7 @@ public class TheatreLinkedList<T> implements Iterable<T>{
                 if (i == index - 1 && tempNode.getNext() != null){
                     // Set the next of the current node to be the next of the following node
                    tempNode.setNext(tempNode.getNext().getNext());
-                    return null;
+                    return;
                 }
                 else{
                     tempNode = tempNode.getNext();
@@ -89,6 +89,27 @@ public class TheatreLinkedList<T> implements Iterable<T>{
             }
         // If no return happened at this point an exception can be thrown
         throw new IndexOutOfBoundsException("Index " + index + " is not within the bounds of the list." );
+    }
+
+    public boolean removeItem(T item){
+        var tempNode = head;
+        // If the item is at the front
+        if (head != null && head.getData().equals(item)) {
+            head = head.next;
+            return true;
+        }
+        while(tempNode != null){
+            // Prevent null pointers
+            if(tempNode.getNext() != null){
+                if(tempNode.getNext().getData().equals(item)){
+                    tempNode.setNext(tempNode.getNext().getNext());
+                    return true;
+                }
+            }
+            tempNode = tempNode.getNext();
+        }
+        // If no item found, return false;
+        return false;
     }
 
     public T get(int index) throws IndexOutOfBoundsException{

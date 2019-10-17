@@ -1,3 +1,4 @@
+import Theatre.Show;
 import Utilities.TheatreLinkedList;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -40,9 +41,14 @@ public class TheatreLinkedListTest {
 
     @Test
     public void lengthTest(){
-        assertEquals(3, testLinkedList.size());
-        testLinkedList.addFront("hey ");
+        testLinkedList.removeAll();
+        testLinkedList.addFront("doing.");
+        testLinkedList.addFront("you ");
+        testLinkedList.addFront("are ");
+        testLinkedList.addFront("how ");
         assertEquals(4, testLinkedList.size());
+        testLinkedList.addFront("hey ");
+        assertEquals(5, testLinkedList.size());
     }
 
     @Test
@@ -52,19 +58,25 @@ public class TheatreLinkedListTest {
         assertEquals(0, testLinkedList.size());
     }
     @Test
-    public void removeTest(){
+    public void removeIndexTest(){
+        testLinkedList.removeAll();
         testLinkedList.addFront("doing.");
         testLinkedList.addFront("you ");
         testLinkedList.addFront("are ");
         testLinkedList.addFront("how ");
         assertThrows(IndexOutOfBoundsException.class, () ->{
-            testLinkedList.remove(4);
+            testLinkedList.removeIndex(4);
         });
-        testLinkedList.remove(2);
+        testLinkedList.removeIndex(2);
         assertEquals(3, testLinkedList.size());
         assertEquals("doing.", testLinkedList.get(2));
     }
-
+    @Test
+    public void removeItemTest(){
+      testLinkedList.addFront("heyyyu");
+      assertEquals(true, testLinkedList.removeItem("heyyyu"));
+      assertEquals(false, testLinkedList.removeItem("oh no"));
+    }
     @Test
     public void iterationTest(){
         testLinkedList.removeAll();
@@ -78,6 +90,13 @@ public class TheatreLinkedListTest {
         }
         assertEquals("how are you doing.", messageString.toString());
 
+    }
+
+    @Test
+    public void generalityTest(){
+        var stringList = new TheatreLinkedList<String>();
+        var showList = new TheatreLinkedList<Show>();
+        var showListList = new TheatreLinkedList<TheatreLinkedList<Show>>();
     }
 
     @AfterAll

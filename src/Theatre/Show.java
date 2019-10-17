@@ -37,8 +37,8 @@ public class Show {
         }
     }
 
-    public void addPerformance(Performance performance){
-        Performances.addFront(performance);
+    public void addPerformance(LocalDate date, String time){
+        Performances.addFront(new Performance(date, time, balconyPrice, circlePrice, stallsPrice));
     }
 
     public LocalDate getStartDate() {

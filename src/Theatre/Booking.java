@@ -2,17 +2,23 @@ package Theatre;
 
 import Utilities.TheatreLinkedList;
 
+import java.util.UUID;
+
 public class Booking {
     // in the form b1, b10, s5 etc
     private String name;
-    private int bookingID;
+    private UUID bookingID;
     private TheatreLinkedList<Seat> seats;
-    private Performance performance;
     private int cost;
 
-    public Booking(TheatreLinkedList<Seat> seats, int cost) {
+    public Booking(String name, TheatreLinkedList<Seat> seats) {
+        this.name = name;
         this.seats = seats;
-        this.cost = cost;
+        // Total cost is just the sum of all teh seats prices;
+        for (Seat s:seats) {
+            cost+=s.getSeatPrice();
+        }
+        this.bookingID = UUID.randomUUID();
     }
 
     public TheatreLinkedList<Seat> getSeats() {

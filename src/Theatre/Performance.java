@@ -16,4 +16,25 @@ public class Performance {
       this.date = date;
       this.time = time;
    }
+
+   public void makeBooking(String name, TheatreLinkedList<String> seatList){
+      bookings.addFront(new Booking(name, seatArrangement.bookSeats(seatList)));
+   }
+
+   public SeatArrangement getSeatArrangement() {
+      return seatArrangement;
+   }
+
+   public LocalDate getDate() {
+      return date;
+   }
+
+   public String getTime() {
+      return time;
+   }
+
+   public TheatreLinkedList<Booking> getBookings() {
+      return bookings;
+   }
+
 }

@@ -4,12 +4,13 @@ public class Seat {
     private boolean isOccupied = false;
     private char seatLocation;
     private int seatNumber;
-    private int price = 0;
+    private int seatPrice;
 
 
     public Seat(char seatLocation, int seatNumber, int seatPrice){
        setSeatLocation(seatLocation);
        setSeatNumber(seatNumber);
+       setSeatPrice(seatPrice);
     }
     public char getSeatLocation() {
         return seatLocation;
@@ -27,12 +28,12 @@ public class Seat {
         this.seatNumber = seatNumber;
     }
 
-    public int getPrice() {
-        return price;
+    public int getSeatPrice() {
+        return seatPrice;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setSeatPrice(int price) {
+        this.seatPrice = price;
     }
 
 
