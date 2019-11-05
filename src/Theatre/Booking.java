@@ -9,12 +9,12 @@ public class Booking {
     private String name;
     private UUID bookingID;
     private TheatreLinkedList<Seat> seats;
-    private int cost;
+    private int cost = 0;
 
     public Booking(String name, TheatreLinkedList<Seat> seats) {
         this.name = name;
         this.seats = seats;
-        // Total cost is just the sum of all teh seats prices;
+        // Total cost is just the sum of all the seats prices;
         for (Seat s:seats) {
             cost+=s.getSeatPrice();
         }

@@ -9,7 +9,7 @@ public class Performance {
    private LocalDate date;
    // Matinee / evening
    private String time;
-   private TheatreLinkedList<Booking> bookings;
+   private TheatreLinkedList<Booking> bookings = new TheatreLinkedList<>();
 
    public Performance(LocalDate date, String time, int balconyPrice, int circlePrice, int stallsPrice){
       seatArrangement = new SeatArrangement(balconyPrice, circlePrice, stallsPrice);

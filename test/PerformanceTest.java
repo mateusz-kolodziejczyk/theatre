@@ -1,5 +1,6 @@
 import Theatre.Performance;
 import Theatre.Show;
+import Utilities.TheatreLinkedList;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,16 @@ public class PerformanceTest {
     }
     @Test
     public void setNameTest(){
+    }
+
+    @Test
+    public void makeBookingtest(){
+        var seats = new TheatreLinkedList<String>();
+        seats.addFront("b1");
+        seats.addFront("b2");
+        seats.addFront("g1");
+        seats.addFront("s10");
+        assertEquals(true,show.addBooking(LocalDate.of(2019, 10, 2), "m", seats, "New Name"));
     }
 
     @AfterAll

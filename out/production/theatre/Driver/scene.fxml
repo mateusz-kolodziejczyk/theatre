@@ -128,7 +128,7 @@
                                     <Insets left="10.0" right="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <ChoiceBox prefWidth="150.0" />
+                              <ChoiceBox fx:id="addPerformanceShow" prefWidth="150.0" />
                               <Label text="Date">
                                  <padding>
                                     <Insets top="2.5" />

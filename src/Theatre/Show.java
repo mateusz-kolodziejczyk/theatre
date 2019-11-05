@@ -9,7 +9,7 @@ public class Show {
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
-    private TheatreLinkedList<Performance> Performances = new TheatreLinkedList<>();
+    private TheatreLinkedList<Performance> performances = new TheatreLinkedList<>();
     private int balconyPrice;
     private int circlePrice;
     private int stallsPrice;
@@ -37,8 +37,26 @@ public class Show {
         }
     }
 
-    public void addPerformance(LocalDate date, String time){
-        Performances.addFront(new Performance(date, time, balconyPrice, circlePrice, stallsPrice));
+    public boolean addPerformance(LocalDate date, String time){
+        // date checker
+        if ((date.isAfter(startDate) || date.isEqual(startDate)) && (date.isAfter(endDate) || date.isEqual(endDate))){
+            performances.addFront(new Performance(date, time, balconyPrice, circlePrice, stallsPrice));
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+    // Add booking to particular performance
+    public boolean addBooking(LocalDate date, String time, TheatreLinkedList<String> seatList, String name){
+        for (Performance performance:performances) {
+            if(performance.getDate().equals(date) && performance.getTime().equals(time.toLowerCase())) {
+                performance.makeBooking(name, seatList);
+                return true;
+            }
+        }
+        return false;
     }
 
     public LocalDate getStartDate() {
