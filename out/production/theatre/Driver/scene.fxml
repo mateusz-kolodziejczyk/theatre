@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Driver.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Driver.MainViewController">
   <tabs>
       <Tab text="Add Show">
         <content>
@@ -137,7 +137,7 @@
                                     <Insets left="10.0" right="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <DatePicker prefHeight="25.0" prefWidth="127.0" promptText="dd/mm/yyyy" />
+                              <DatePicker fx:id="addPerformanceDate" prefHeight="25.0" prefWidth="127.0" promptText="dd/mm/yyyy" />
                               <Label layoutX="20.0" layoutY="10.0" text="Time">
                                  <padding>
                                     <Insets top="2.5" />
@@ -146,13 +146,13 @@
                                     <Insets left="10.0" right="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <ChoiceBox layoutX="54.0" layoutY="10.0" prefHeight="25.0" prefWidth="95.0" />
+                              <ChoiceBox fx:id="addPerformanceTime" layoutX="54.0" layoutY="10.0" prefHeight="25.0" prefWidth="95.0" />
                            </children>
                         </HBox>
                         <Separator prefWidth="200.0" />
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="313.0" prefWidth="600.0">
                            <children>
-                              <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="34.0" prefWidth="96.0" text="Add">
+                              <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#addPerformance" prefHeight="34.0" prefWidth="96.0" text="Add">
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" />
                                  </HBox.margin>

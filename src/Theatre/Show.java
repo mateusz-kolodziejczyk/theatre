@@ -40,6 +40,12 @@ public class Show {
     public boolean addPerformance(LocalDate date, String time){
         // date checker
         if ((date.isAfter(startDate) || date.isEqual(startDate)) && (date.isAfter(endDate) || date.isEqual(endDate))){
+            // Make sure there are no duplicates
+            for (Performance performance:performances) {
+               if(performance.getTime() == time && performance.getDate() == date) {
+                   return false;
+               }
+            }
             performances.addFront(new Performance(date, time, balconyPrice, circlePrice, stallsPrice));
             return true;
         }
@@ -97,5 +103,9 @@ public class Show {
 
     public void setStallsPrice(int stallsPrice) {
         this.stallsPrice = stallsPrice;
+    }
+
+    public String toString() {
+        return name + "; Start: " + startDate + "; End: " + endDate;
     }
 }
