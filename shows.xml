@@ -1,0 +1,16 @@
+<object-stream>
+  <Utilities.TheatreLinkedList>
+    <head>
+      <data class="Theatre.Show">
+        <name>b321v</name>
+        <startDate>2019-11-05</startDate>
+        <endDate>2019-11-14</endDate>
+        <performances/>
+        <balconyPrice>23</balconyPrice>
+        <circlePrice>12</circlePrice>
+        <stallsPrice>32</stallsPrice>
+      </data>
+      <outer-class reference="../.."/>
+    </head>
+  </Utilities.TheatreLinkedList>
+</object-stream>

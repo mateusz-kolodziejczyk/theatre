@@ -2,11 +2,19 @@ package Driver;
 
 import Theatre.Show;
 import Utilities.TheatreLinkedList;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.LinkedList;
 
 public class MainViewController {
     // Add show fields
@@ -103,6 +111,27 @@ public class MainViewController {
         addPerformanceTime.getItems().add("matinee");
         addPerformanceTime.getItems().add("evening");
     }
+
+    @FXML
+    @SuppressWarnings("unchecked")
+    public void load() throws Exception {
+        XStream xstream = new XStream(new DomDriver());
+        ObjectInputStream is = xstream.createObjectInputStream(new FileReader("shows.xml"));
+        shows = (TheatreLinkedList<Show>) is.readObject();
+        is.close();
+    }
+    @FXML
+    public void save() throws Exception {
+        XStream xstream = new XStream(new DomDriver());
+        ObjectOutputStream out = xstream.createObjectOutputStream(new FileWriter("shows.xml"));
+        out.writeObject(shows);
+        out.close();
+    }
+    @FXML
+    public void reset(){
+        shows = new TheatreLinkedList<>();
+    }
+
 
 
 }

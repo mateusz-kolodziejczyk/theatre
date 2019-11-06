@@ -54,6 +54,17 @@ public class Show {
         }
 
     }
+
+    public boolean deletePerformance(LocalDate date, String time){
+        for (Performance performance:performances) {
+            if(date.equals(performance.getDate()) && time.equals(performance.getTime())){
+                performances.removeItem(performance);
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Add booking to particular performance
     public boolean addBooking(LocalDate date, String time, TheatreLinkedList<String> seatList, String name){
         for (Performance performance:performances) {
