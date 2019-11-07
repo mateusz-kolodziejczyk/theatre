@@ -14,7 +14,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.LinkedList;
 
 public class MainViewController {
     // Add show fields
@@ -51,6 +50,7 @@ public class MainViewController {
 
     @FXML
     public void addShow() {
+        // Checking if the fields are all valid
         if (addShowName.getText().equals("")
                 || addShowBalconyPrice.getText().equals("")
                 || addShowCirclePrice.getText().equals("")
@@ -75,8 +75,6 @@ public class MainViewController {
         addShowStartDate.getEditor().clear();
         addShowEndDate.getEditor().clear();
         addShowError.setText("");
-
-        // fill the performance showlist
     }
 
     @FXML
@@ -110,6 +108,36 @@ public class MainViewController {
         addPerformanceTime.getItems().clear();
         addPerformanceTime.getItems().add("matinee");
         addPerformanceTime.getItems().add("evening");
+    }
+
+    @FXML
+    public void bookSeatsUpdatePerformances(){
+
+    }
+
+    @FXML
+    public void bookSeats(){
+
+    }
+
+    @FXML
+    public void deleteShow(){
+
+    }
+
+    @FXML
+    public void deletePerformance(){
+
+    }
+
+    @FXML
+    public void deleteBooking(){
+
+    }
+
+    @FXML
+    public void updateBooking(){
+
     }
 
     @FXML

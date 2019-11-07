@@ -21,6 +21,14 @@ public class Booking {
         this.bookingID = UUID.randomUUID();
     }
 
+    public UUID getBookingID() {
+        return bookingID;
+    }
+
+    public void setBookingID(UUID bookingID) {
+        this.bookingID = bookingID;
+    }
+
     public TheatreLinkedList<Seat> getSeats() {
         return seats;
     }

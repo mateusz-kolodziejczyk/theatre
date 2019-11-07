@@ -51,6 +51,28 @@ public class SeatArrangement {
         for (int i = 0; i < seatSection.length; i++) {
             seatSection[i] = new Seat(seatLocation, i, price);
         }
-    }
+
+     }
+
+     public TheatreLinkedList<Seat> findContinuousSeats(char section, int number, int seatsPerRow){
+        return continuousSeatsLoop(number, seatsPerRow, balcony);
+     }
+
+     private TheatreLinkedList<Seat> continuousSeatsLoop(int number, int seatsPerRow, Seat[] seatSection){
+        var continuousSeatList = new TheatreLinkedList<Seat>();
+        for (int i = 0; i < seatSection.length; i++){
+            // If it's the first seat on the row
+            if(i % seatsPerRow == 0){
+                // Reset linked list
+                continuousSeatList.removeAll();
+            }
+            continuousSeatList.addFront(seatSection[i]);
+            // If the list is teh desired length, return
+            if(continuousSeatList.size() >= number){
+                break;
+            }
+        }
+        return continuousSeatList;
+     }
 
 }

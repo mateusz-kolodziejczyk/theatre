@@ -38,22 +38,15 @@ public class Show {
     }
 
     public boolean addPerformance(LocalDate date, String time){
-        // date checker
-        if ((date.isAfter(startDate) || date.isEqual(startDate)) && (date.isAfter(endDate) || date.isEqual(endDate))){
             // Make sure there are no duplicates
             for (Performance performance:performances) {
-               if(performance.getTime() == time && performance.getDate() == date) {
+               if(performance.getTime().equals(time) && performance.getDate().equals(date)) {
                    return false;
                }
             }
             performances.addFront(new Performance(date, time, balconyPrice, circlePrice, stallsPrice));
             return true;
         }
-        else{
-            return false;
-        }
-
-    }
 
     public boolean deletePerformance(LocalDate date, String time){
         for (Performance performance:performances) {
@@ -63,6 +56,10 @@ public class Show {
             }
         }
         return false;
+    }
+
+    public boolean deletePerformance(Performance performance){
+      return performances.removeItem(performance);
     }
 
     // Add booking to particular performance
