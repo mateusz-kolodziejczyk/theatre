@@ -14,10 +14,7 @@ public class Booking {
     public Booking(String name, TheatreLinkedList<Seat> seats) {
         this.name = name;
         this.seats = seats;
-        // Total cost is just the sum of all the seats prices;
-        for (Seat s:seats) {
-            cost+=s.getSeatPrice();
-        }
+        updateCost();
         this.bookingID = UUID.randomUUID();
     }
 
@@ -37,11 +34,24 @@ public class Booking {
         this.seats = seats;
     }
 
-    public int getPrice() {
+    public int getCost() {
+        updateCost();
         return cost;
     }
 
-    public void setPrice(int cost) {
-        this.cost = cost;
+    public void updateCost(){
+        for (Seat seat: seats) {
+            cost+=seat.getSeatPrice();
+        }
+    }
+
+    public String toString() {
+        var returnString = new StringBuilder();
+        returnString.append(name).append(": ");
+        for (Seat seat:seats) {
+           returnString.append(seat.toString()) ;
+        }
+        returnString.append(": €").append(cost);
+        return returnString.toString();
     }
 }

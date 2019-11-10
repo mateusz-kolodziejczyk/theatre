@@ -58,6 +58,16 @@ public class Show {
         return false;
     }
 
+    public boolean deletePerformance(String performanceString){
+        for (var performance:performances) {
+           if(performance.toString().equals(performanceString)) {
+               performances.removeItem(performance);
+               return true;
+           }
+        }
+        return false;
+    }
+
     public boolean deletePerformance(Performance performance){
       return performances.removeItem(performance);
     }
@@ -107,6 +117,10 @@ public class Show {
 
     public int getStallsPrice() {
         return stallsPrice;
+    }
+
+    public TheatreLinkedList<Performance> getPerformances() {
+        return performances;
     }
 
     public void setStallsPrice(int stallsPrice) {

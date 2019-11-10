@@ -31,6 +31,16 @@ public class Performance {
       return false;
    }
 
+   public boolean deleteBooking(String bookingString){
+      for (var booking: bookings) {
+        if(booking.toString().equals(bookingString)) {
+           bookings.removeItem(booking);
+           return true;
+        }
+      }
+      return false;
+   }
+
    public SeatArrangement getSeatArrangement() {
       return seatArrangement;
    }
@@ -47,4 +57,7 @@ public class Performance {
       return bookings;
    }
 
+   public String toString() {
+       return date + "; " + time;
+   }
 }

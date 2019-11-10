@@ -1,14 +1,13 @@
 package Driver;
 
+import Theatre.Booking;
+import Theatre.Performance;
 import Theatre.Show;
 import Utilities.TheatreLinkedList;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -45,6 +44,10 @@ public class MainViewController {
     // Book seats fields
     @FXML
     public ChoiceBox<String> bookSeatsShow;
+
+    // Theatre data fields
+    @FXML
+    public TreeView<String> theatreData;
     // General variables
     private TheatreLinkedList<Show> shows = new TheatreLinkedList<>();
 
@@ -136,12 +139,85 @@ public class MainViewController {
     }
 
     @FXML
+    public void deleteItem(){
+        var currentItem = theatreData.getSelectionModel().getSelectedItem();
+        // Needed to prevent an exception
+        if(currentItem.equals(theatreData.getRoot())){
+           return;
+        }
+        var showItem = currentItem;
+        // Go through each parent of the current item until it finds the root
+        // Show item makes searching more efficient
+        while(!showItem.getParent().equals(theatreData.getRoot())){
+           showItem = showItem.getParent();
+        }
+        //Checking if its the show itself
+        if(currentItem.equals(showItem)) {
+            for (var show:shows) {
+                if(show.toString().equals(showItem.getValue())){
+                    shows.removeItem(show);
+                    return;
+                }
+            }
+        }
+        for (var item:theatreData.getRoot().getChildren()) {
+           if(item.equals(showItem)) {
+               for (var performanceItem:item.getChildren()) {
+                   // If the selected item is a performance
+                   if(performanceItem.equals(currentItem)){
+                       for (var show:shows) {
+                          if(show.toString().equals(showItem.getValue())) {
+                              show.deletePerformance(currentItem.getValue());
+                          }
+                       }
+                   }
+                   else{
+                       for (var bookingItem:performanceItem.getChildren()) {
+                          if(bookingItem.equals(currentItem)) {
+                              for(var show:shows){
+                                  if(show.toString().equals(showItem.getValue())){
+                                      for (var performance:show.getPerformances()) {
+                                         if(performance.toString().equals(performanceItem.getValue())) {
+                                             performance.deleteBooking(currentItem.getValue());
+                                         }
+                                      }
+                                  }
+                              }
+                          }
+                       }
+                   }
+               }
+           }
+        }
+        // Update list afterwards
+        updateTheatreData();
+    }
+
+    @FXML
     public void updateBooking(){
 
     }
 
+    // created using help from https://docs.oracle.com/javafx/2/ui_controls/tree-view.htm
     @FXML
-    @SuppressWarnings("unchecked")
+    public void updateTheatreData(){
+        var rootNode = new TreeItem<String>("Shows");
+        for (Show show:shows) {
+           var showItem = new TreeItem<String>(show.toString());
+            for (Performance performance: show.getPerformances()) {
+                var performanceItem = new TreeItem<String>(performance.toString());
+                for (Booking booking:performance.getBookings()) {
+                    var bookingItem = new TreeItem<String>(booking.toString());
+                    performanceItem.getChildren().add(bookingItem);
+                }
+                showItem.getChildren().add(performanceItem);
+            }
+            rootNode.getChildren().add(showItem);
+        }
+        theatreData.setRoot(rootNode);
+    }
+
+    @FXML
     public void load() throws Exception {
         XStream xstream = new XStream(new DomDriver());
         ObjectInputStream is = xstream.createObjectInputStream(new FileReader("shows.xml"));
