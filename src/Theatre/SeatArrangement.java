@@ -54,8 +54,17 @@ public class SeatArrangement {
 
      }
 
-     public TheatreLinkedList<Seat> findContinuousSeats(char section, int number, int seatsPerRow){
-        return continuousSeatsLoop(number, seatsPerRow, balcony);
+     public TheatreLinkedList<Seat> findContinuousSeats(char section, int number){
+        switch (section){
+            case 'b':
+                return continuousSeatsLoop(number, 8, balcony);
+            case 'c':
+                return continuousSeatsLoop(number, 10, circle);
+            case 's':
+                return continuousSeatsLoop(number, 10, stalls);
+            default:
+                return new TheatreLinkedList<Seat>();
+        }
      }
 
      private TheatreLinkedList<Seat> continuousSeatsLoop(int number, int seatsPerRow, Seat[] seatSection){

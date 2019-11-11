@@ -2,6 +2,7 @@ package Driver;
 
 import Theatre.Booking;
 import Theatre.Performance;
+import Theatre.Seat;
 import Theatre.Show;
 import Utilities.TheatreLinkedList;
 import com.thoughtworks.xstream.XStream;
@@ -215,6 +216,21 @@ public class MainViewController {
             rootNode.getChildren().add(showItem);
         }
         theatreData.setRoot(rootNode);
+    }
+
+    @FXML
+    public void findContinuousSeats(){
+        var continuousSeats = new TheatreLinkedList<Seat>();
+        for (var show:shows) {
+            for (var performance:show.getPerformances()) {
+               if(performance.toString().equals(inputtedPerformance)) {
+                   continuousSeats = performance.getSeatArrangement().findContinuousSeats(section, number);
+               }
+            }
+        }
+        for (var seat:continuousSeats) {
+            label.getValue().add(seat.toString() + ", ");
+        }
     }
 
     @FXML
