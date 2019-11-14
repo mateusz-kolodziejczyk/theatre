@@ -34,7 +34,7 @@ public class MainViewController {
 
     // Add performance fields
     @FXML
-    public ChoiceBox<String> addPerformanceShow;
+    public ChoiceBox<Show> addPerformanceShow;
     @FXML
     public DatePicker addPerformanceDate;
     @FXML
@@ -44,7 +44,15 @@ public class MainViewController {
 
     // Book seats fields
     @FXML
-    public ChoiceBox<String> bookSeatsShow;
+    public ChoiceBox<Show> bookSeatsShow;
+    @FXML
+    public ChoiceBox<Performance> bookSeatsPerformance;
+    @FXML
+    public ChoiceBox<String> bookSeatsSection;
+    @FXML
+    public TextField bookSeatsNumSeats;
+    @FXML
+    public Label bookSeatsResult;
 
     // Theatre data fields
     @FXML
@@ -83,31 +91,25 @@ public class MainViewController {
 
     @FXML
     public void addPerformance() {
-        for (Show show : shows) {
-            if (show.toString().equals(addPerformanceShow.getValue())) {
                 // Date checking done with help of https://stackoverflow.com/questions/494180/java-how-do-i-check-if-a-date-is-within-a-certain-range
-                if (!(addPerformanceDate.getValue().isBefore(show.getStartDate()) || addPerformanceDate.getValue().isAfter(show.getEndDate()))) {
+                if (!(addPerformanceDate.getValue().isBefore(addPerformanceShow.getValue().getStartDate()) || addPerformanceDate.getValue().isAfter(addPerformanceShow.getValue().getEndDate()))) {
                     // If adding the show succeeded
-                    if (show.addPerformance(addPerformanceDate.getValue(), addPerformanceTime.getValue())) {
+                    if (addPerformanceShow.getValue().addPerformance(addPerformanceDate.getValue(), addPerformanceTime.getValue())) {
                         addPerformanceError.setText("");
                         addPerformanceDate.getEditor().clear();
-                    }
-                    else {
+                    } else {
                         addPerformanceError.setText("Performance already exists at this date and time.");
                     }
+                } else {
+                    addPerformanceError.setText("Performance isn't within the range of dates for show: " + addPerformanceShow.getValue().toString());
                 }
-                else {
-                    addPerformanceError.setText("Performance isn't within the range of dates for show: " + show.toString());
-                }
-            }
-        }
     }
 
     @FXML
     public void addPerformanceStart() {
         addPerformanceShow.getItems().clear();
         for (Show show : shows) {
-            addPerformanceShow.getItems().add(show.toString());
+            addPerformanceShow.getItems().add(show);
         }
         addPerformanceTime.getItems().clear();
         addPerformanceTime.getItems().add("matinee");
@@ -115,100 +117,108 @@ public class MainViewController {
     }
 
     @FXML
-    public void bookSeatsUpdatePerformances(){
+    public void bookSeatsUpdatePerformances() {
+        bookSeatsPerformance.getItems().clear();
+        for (var performance:bookSeatsShow.getValue().getPerformances()) {
+           bookSeatsPerformance.getItems().add(performance) ;
+        }
+    }
+
+    @FXML
+    public void bookSeats() {
 
     }
 
     @FXML
-    public void bookSeats(){
+    public void deleteShow() {
 
     }
 
     @FXML
-    public void deleteShow(){
+    public void deletePerformance() {
 
     }
 
     @FXML
-    public void deletePerformance(){
+    public void deleteBooking() {
 
     }
 
     @FXML
-    public void deleteBooking(){
-
-    }
-
-    @FXML
-    public void deleteItem(){
+    public void deleteItem() {
         var currentItem = theatreData.getSelectionModel().getSelectedItem();
+        var chosenShow = new Show();
         // Needed to prevent an exception
-        if(currentItem.equals(theatreData.getRoot())){
-           return;
+        if (currentItem.equals(theatreData.getRoot())) {
+            return;
         }
         var showItem = currentItem;
         // Go through each parent of the current item until it finds the root
         // Show item makes searching more efficient
-        while(!showItem.getParent().equals(theatreData.getRoot())){
-           showItem = showItem.getParent();
+        while (!showItem.getParent().equals(theatreData.getRoot())) {
+            showItem = showItem.getParent();
         }
-        //Checking if its the show itself
-        if(currentItem.equals(showItem)) {
-            for (var show:shows) {
-                if(show.toString().equals(showItem.getValue())){
-                    shows.removeItem(show);
-                    return;
-                }
+        for (var show : shows) {
+            if (showItem.equals(show.toString())) {
+                chosenShow = show;
             }
         }
-        for (var item:theatreData.getRoot().getChildren()) {
-           if(item.equals(showItem)) {
-               for (var performanceItem:item.getChildren()) {
-                   // If the selected item is a performance
-                   if(performanceItem.equals(currentItem)){
-                       for (var show:shows) {
-                          if(show.toString().equals(showItem.getValue())) {
-                              show.deletePerformance(currentItem.getValue());
-                          }
-                       }
-                   }
-                   else{
-                       for (var bookingItem:performanceItem.getChildren()) {
-                          if(bookingItem.equals(currentItem)) {
-                              for(var show:shows){
-                                  if(show.toString().equals(showItem.getValue())){
-                                      for (var performance:show.getPerformances()) {
-                                         if(performance.toString().equals(performanceItem.getValue())) {
-                                             performance.deleteBooking(currentItem.getValue());
-                                         }
-                                      }
-                                  }
-                              }
-                          }
-                       }
-                   }
-               }
-           }
+        for (var item : theatreData.getRoot().getChildren()) {
+            if (item.equals(showItem)) {
+                if(currentItem.equals(showItem)){
+                    // Checking if its the show itself
+                    shows.removeItem(chosenShow);
+                    return;
+                }
+                for (var performanceItem : item.getChildren()) {
+                    // If the selected item is a performance
+                    if (performanceItem.equals(currentItem)) {
+                        chosenShow.deletePerformance(currentItem.getValue());
+                    } else {
+                        for (var bookingItem : performanceItem.getChildren()) {
+                            if (bookingItem.equals(currentItem)) {
+                                for (var performance : chosenShow.getPerformances()) {
+                                    if (performance.toString().equals(performanceItem.getValue())) {
+                                        performance.deleteBooking(currentItem.getValue());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         // Update list afterwards
         updateTheatreData();
     }
 
     @FXML
-    public void updateBooking(){
+    public void updateBooking() {
 
+    }
+
+    @FXML
+    public void bookSeatsStart(){
+        bookSeatsShow.getItems().clear();
+        for (Show show : shows) {
+            bookSeatsShow.getItems().add(show);
+        }
+        bookSeatsSection.getItems().clear();
+        bookSeatsSection.getItems().add("balcony");
+        bookSeatsSection.getItems().add("circle");
+        bookSeatsSection.getItems().add("stalls");
     }
 
     // created using help from https://docs.oracle.com/javafx/2/ui_controls/tree-view.htm
     @FXML
-    public void updateTheatreData(){
-        var rootNode = new TreeItem<String>("Shows");
-        for (Show show:shows) {
-           var showItem = new TreeItem<String>(show.toString());
-            for (Performance performance: show.getPerformances()) {
-                var performanceItem = new TreeItem<String>(performance.toString());
-                for (Booking booking:performance.getBookings()) {
-                    var bookingItem = new TreeItem<String>(booking.toString());
+    public void updateTheatreData() {
+        var rootNode = new TreeItem<>("Shows");
+        for (Show show : shows) {
+            var showItem = new TreeItem<>(show.toString());
+            for (Performance performance : show.getPerformances()) {
+                var performanceItem = new TreeItem<>(performance.toString());
+                for (Booking booking : performance.getBookings()) {
+                    var bookingItem = new TreeItem<>(booking.toString());
                     performanceItem.getChildren().add(bookingItem);
                 }
                 showItem.getChildren().add(performanceItem);
@@ -219,17 +229,16 @@ public class MainViewController {
     }
 
     @FXML
-    public void findContinuousSeats(){
+    public void findContinuousSeats() {
         var continuousSeats = new TheatreLinkedList<Seat>();
-        for (var show:shows) {
-            for (var performance:show.getPerformances()) {
-               if(performance.toString().equals(inputtedPerformance)) {
-                   continuousSeats = performance.getSeatArrangement().findContinuousSeats(section, number);
-               }
-            }
+        continuousSeats = bookSeatsPerformance.getValue().getSeatArrangement().findContinuousSeats(bookSeatsSection.getValue().charAt(0), Integer.parseInt(bookSeatsNumSeats.getText()));
+        bookSeatsResult.setText("Seats found: ");
+        for (var seat : continuousSeats) {
+            bookSeatsResult.setText(bookSeatsResult.getText() + seat.toString() + ", ");
         }
-        for (var seat:continuousSeats) {
-            label.getValue().add(seat.toString() + ", ");
+       // Give a helpful message if unsuccesful
+        if(bookSeatsResult.getText().equals("Seats found: ")){
+            bookSeatsResult.setText("No set of continuous seats found");
         }
     }
 
@@ -240,6 +249,7 @@ public class MainViewController {
         shows = (TheatreLinkedList<Show>) is.readObject();
         is.close();
     }
+
     @FXML
     public void save() throws Exception {
         XStream xstream = new XStream(new DomDriver());
@@ -247,11 +257,11 @@ public class MainViewController {
         out.writeObject(shows);
         out.close();
     }
+
     @FXML
-    public void reset(){
+    public void reset() {
         shows = new TheatreLinkedList<>();
     }
-
 
 
 }

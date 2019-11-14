@@ -49,7 +49,7 @@ public class SeatArrangement {
 
     private void assignSeats(char seatLocation, Seat[] seatSection, int price) {
         for (int i = 0; i < seatSection.length; i++) {
-            seatSection[i] = new Seat(seatLocation, i, price);
+            seatSection[i] = new Seat(seatLocation, i+1, price);
         }
 
      }
@@ -63,7 +63,7 @@ public class SeatArrangement {
             case 's':
                 return continuousSeatsLoop(number, 10, stalls);
             default:
-                return new TheatreLinkedList<Seat>();
+                return new TheatreLinkedList<>();
         }
      }
 
@@ -76,12 +76,13 @@ public class SeatArrangement {
                 continuousSeatList.removeAll();
             }
             continuousSeatList.addFront(seatSection[i]);
-            // If the list is teh desired length, return
+            // If the list is the desired length, return
             if(continuousSeatList.size() >= number){
-                break;
+                return continuousSeatList;
             }
         }
-        return continuousSeatList;
+        // If not enough seats were found, return new empty list
+        return new TheatreLinkedList<>();
      }
 
 }

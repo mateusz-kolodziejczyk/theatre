@@ -189,7 +189,7 @@
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="Book Seats">
+    <Tab onSelectionChanged="#bookSeatsStart" text="Book Seats">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -226,7 +226,45 @@
                               </Button>
                            </children>
                         </HBox>
-                        <HBox alignment="BOTTOM_RIGHT" prefHeight="260.0" prefWidth="600.0">
+                        <Separator prefWidth="200.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="600.0" text="Find Continuous Seats" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="19.0" prefWidth="600.0">
+                           <children>
+                              <Label text="Number of Seats">
+                                 <padding>
+                                    <Insets top="2.5" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="bookSeatsNumSeats" prefHeight="25.0" prefWidth="65.0" />
+                              <Label layoutX="20.0" layoutY="10.0" text="Section">
+                                 <padding>
+                                    <Insets top="2.5" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ChoiceBox fx:id="bookSeatsSection" prefHeight="38.0" prefWidth="150.0" />
+                              <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#findContinuousSeats" prefHeight="25.0" prefWidth="87.0" text="Check Seats">
+                                 <HBox.margin>
+                                    <Insets left="30.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label fx:id="bookSeatsResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="600.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="233.0" prefWidth="600.0">
                            <children>
                               <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#bookSeats" prefHeight="34.0" prefWidth="96.0" text="Add">
                                  <HBox.margin>

@@ -14,6 +14,9 @@ public class Show {
     private int circlePrice;
     private int stallsPrice;
 
+    public Show(){
+
+    }
     public Show(String name, LocalDate startDate, LocalDate endDate, int balconyPrice, int circlePrice, int stallsPrice){
         setName(name);
         // If the set failed, set it to unknown

@@ -127,7 +127,6 @@ public class TheatreLinkedList<T> implements Iterable<T>{
     }
 
 
-
     public Iterator<T> iterator() {
         return new TheatreIterator(this);
     }
