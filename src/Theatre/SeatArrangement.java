@@ -75,6 +75,10 @@ public class SeatArrangement {
                 // Reset linked list
                 continuousSeatList.removeAll();
             }
+            // If its occupied, go to the next one
+            if(seatSection[i].isOccupied()){
+                continue;
+            }
             continuousSeatList.addFront(seatSection[i]);
             // If the list is the desired length, return
             if(continuousSeatList.size() >= number){

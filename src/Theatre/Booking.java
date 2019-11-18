@@ -49,7 +49,7 @@ public class Booking {
         var returnString = new StringBuilder();
         returnString.append(name).append(": ");
         for (Seat seat:seats) {
-           returnString.append(seat.toString()) ;
+           returnString.append(seat.toString()).append(", ") ;
         }
         returnString.append(": €").append(cost);
         return returnString.toString();

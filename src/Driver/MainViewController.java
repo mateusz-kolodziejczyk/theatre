@@ -8,12 +8,17 @@ import Utilities.TheatreLinkedList;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.rmi.server.ExportException;
 
 public class MainViewController {
     // Add show fields
@@ -53,12 +58,18 @@ public class MainViewController {
     public TextField bookSeatsNumSeats;
     @FXML
     public Label bookSeatsResult;
+    @FXML
+    public TextField bookSeatsName;
 
     // Theatre data fields
     @FXML
     public TreeView<String> theatreData;
     // General variables
     private TheatreLinkedList<Show> shows = new TheatreLinkedList<>();
+    public static Show bookingShow;
+    public static Performance bookingPerformance;
+    public static String bookingName;
+
 
     @FXML
     public void addShow() {
@@ -123,12 +134,6 @@ public class MainViewController {
            bookSeatsPerformance.getItems().add(performance) ;
         }
     }
-
-    @FXML
-    public void bookSeats() {
-
-    }
-
     @FXML
     public void deleteShow() {
 
@@ -261,6 +266,19 @@ public class MainViewController {
     @FXML
     public void reset() {
         shows = new TheatreLinkedList<>();
+    }
+
+    @FXML
+    public void bookSeats() throws Exception {
+        bookingName = bookSeatsName.getText();
+        bookingShow = bookSeatsShow.getValue();
+        bookingPerformance = bookSeatsPerformance.getValue();
+
+        Parent root = FXMLLoader.load(getClass().getResource("seatgrid.fxml"));
+        Scene scene = new Scene(root, 500, 500);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
 
