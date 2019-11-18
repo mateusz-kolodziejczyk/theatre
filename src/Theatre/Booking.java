@@ -31,7 +31,15 @@ public class Booking {
     }
 
     public void setSeats(TheatreLinkedList<Seat> seats) {
+        // Go through each seat in the booking, making sure to de-occupy any that have been removed
+        for (var seat:this.seats) {
+            // If the current seat list has the seat, but the new one doesn't, make it unoccupied as it is getting removed from the list
+           if(!seats.contains(seat)) {
+               seat.setOccupied(false);
+           }
+        }
         this.seats = seats;
+        updateCost();
     }
 
     public int getCost() {

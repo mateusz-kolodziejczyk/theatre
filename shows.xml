@@ -589,13 +589,13 @@
                 <seatArrangement>
                   <balcony>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>b</seatLocation>
                       <seatNumber>1</seatNumber>
                       <seatPrice>20</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>b</seatLocation>
                       <seatNumber>2</seatNumber>
                       <seatPrice>20</seatPrice>
@@ -637,13 +637,13 @@
                       <seatPrice>20</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>b</seatLocation>
                       <seatNumber>9</seatNumber>
                       <seatPrice>20</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>b</seatLocation>
                       <seatNumber>10</seatNumber>
                       <seatPrice>20</seatPrice>
@@ -685,7 +685,7 @@
                       <seatPrice>20</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>b</seatLocation>
                       <seatNumber>17</seatNumber>
                       <seatPrice>20</seatPrice>
@@ -721,7 +721,7 @@
                       <seatPrice>20</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>b</seatLocation>
                       <seatNumber>23</seatNumber>
                       <seatPrice>20</seatPrice>
@@ -765,13 +765,13 @@
                       <seatPrice>15</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>c</seatLocation>
                       <seatNumber>6</seatNumber>
                       <seatPrice>15</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>c</seatLocation>
                       <seatNumber>7</seatNumber>
                       <seatPrice>15</seatPrice>
@@ -801,7 +801,7 @@
                       <seatPrice>15</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>c</seatLocation>
                       <seatNumber>12</seatNumber>
                       <seatPrice>15</seatPrice>
@@ -825,7 +825,7 @@
                       <seatPrice>15</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>c</seatLocation>
                       <seatNumber>16</seatNumber>
                       <seatPrice>15</seatPrice>
@@ -861,13 +861,13 @@
                       <seatPrice>15</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>c</seatLocation>
                       <seatNumber>22</seatNumber>
                       <seatPrice>15</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>c</seatLocation>
                       <seatNumber>23</seatNumber>
                       <seatPrice>15</seatPrice>
@@ -917,13 +917,13 @@
                   </circle>
                   <stalls>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>s</seatLocation>
                       <seatNumber>1</seatNumber>
                       <seatPrice>10</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>s</seatLocation>
                       <seatNumber>2</seatNumber>
                       <seatPrice>10</seatPrice>
@@ -947,13 +947,13 @@
                       <seatPrice>10</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>s</seatLocation>
                       <seatNumber>6</seatNumber>
                       <seatPrice>10</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>s</seatLocation>
                       <seatNumber>7</seatNumber>
                       <seatPrice>10</seatPrice>
@@ -1007,13 +1007,13 @@
                       <seatPrice>10</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>s</seatLocation>
                       <seatNumber>16</seatNumber>
                       <seatPrice>10</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>s</seatLocation>
                       <seatNumber>17</seatNumber>
                       <seatPrice>10</seatPrice>
@@ -1067,13 +1067,13 @@
                       <seatPrice>10</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>s</seatLocation>
                       <seatNumber>26</seatNumber>
                       <seatPrice>10</seatPrice>
                     </Theatre.Seat>
                     <Theatre.Seat>
-                      <isOccupied>false</isOccupied>
+                      <isOccupied>true</isOccupied>
                       <seatLocation>s</seatLocation>
                       <seatNumber>27</seatNumber>
                       <seatPrice>10</seatPrice>
@@ -1160,7 +1160,98 @@
                 </seatArrangement>
                 <date>2019-11-27</date>
                 <time>matinee</time>
-                <bookings/>
+                <bookings>
+                  <head>
+                    <data class="Theatre.Booking">
+                      <name>hey</name>
+                      <bookingID>f273e093-69c9-47b2-a084-028dee509780</bookingID>
+                      <seats>
+                        <head>
+                          <data class="Theatre.Seat" reference="../../../../../../seatArrangement/stalls/Theatre.Seat[2]"/>
+                          <next>
+                            <data class="Theatre.Seat" reference="../../../../../../../seatArrangement/stalls/Theatre.Seat"/>
+                            <next>
+                              <data class="Theatre.Seat" reference="../../../../../../../../seatArrangement/stalls/Theatre.Seat[27]"/>
+                              <next>
+                                <data class="Theatre.Seat" reference="../../../../../../../../../seatArrangement/stalls/Theatre.Seat[16]"/>
+                                <next>
+                                  <data class="Theatre.Seat" reference="../../../../../../../../../../seatArrangement/stalls/Theatre.Seat[26]"/>
+                                  <next>
+                                    <data class="Theatre.Seat" reference="../../../../../../../../../../../seatArrangement/stalls/Theatre.Seat[6]"/>
+                                    <next>
+                                      <data class="Theatre.Seat" reference="../../../../../../../../../../../../seatArrangement/stalls/Theatre.Seat[7]"/>
+                                      <next>
+                                        <data class="Theatre.Seat" reference="../../../../../../../../../../../../../seatArrangement/stalls/Theatre.Seat[17]"/>
+                                        <next>
+                                          <data class="Theatre.Seat" reference="../../../../../../../../../../../../../../seatArrangement/circle/Theatre.Seat[22]"/>
+                                          <next>
+                                            <data class="Theatre.Seat" reference="../../../../../../../../../../../../../../../seatArrangement/circle/Theatre.Seat[23]"/>
+                                            <next>
+                                              <data class="Theatre.Seat" reference="../../../../../../../../../../../../../../../../seatArrangement/circle/Theatre.Seat[12]"/>
+                                              <next>
+                                                <data class="Theatre.Seat" reference="../../../../../../../../../../../../../../../../../seatArrangement/circle/Theatre.Seat[6]"/>
+                                                <next>
+                                                  <data class="Theatre.Seat" reference="../../../../../../../../../../../../../../../../../../seatArrangement/circle/Theatre.Seat[16]"/>
+                                                  <next>
+                                                    <data class="Theatre.Seat" reference="../../../../../../../../../../../../../../../../../../../seatArrangement/circle/Theatre.Seat[7]"/>
+                                                    <next>
+                                                      <data class="Theatre.Seat" reference="../../../../../../../../../../../../../../../../../../../../seatArrangement/balcony/Theatre.Seat[2]"/>
+                                                      <next>
+                                                        <data class="Theatre.Seat" reference="../../../../../../../../../../../../../../../../../../../../../seatArrangement/balcony/Theatre.Seat[10]"/>
+                                                        <next>
+                                                          <data class="Theatre.Seat" reference="../../../../../../../../../../../../../../../../../../../../../../seatArrangement/balcony/Theatre.Seat[17]"/>
+                                                          <next>
+                                                            <data class="Theatre.Seat" reference="../../../../../../../../../../../../../../../../../../../../../../../seatArrangement/balcony/Theatre.Seat[9]"/>
+                                                            <next>
+                                                              <data class="Theatre.Seat" reference="../../../../../../../../../../../../../../../../../../../../../../../../seatArrangement/balcony/Theatre.Seat"/>
+                                                              <next>
+                                                                <data class="Theatre.Seat" reference="../../../../../../../../../../../../../../../../../../../../../../../../../seatArrangement/balcony/Theatre.Seat[23]"/>
+                                                                <outer-class reference="../../../../../../../../../../../../../../../../../../../../.."/>
+                                                              </next>
+                                                              <outer-class reference="../../../../../../../../../../../../../../../../../../../.."/>
+                                                            </next>
+                                                            <outer-class reference="../../../../../../../../../../../../../../../../../../.."/>
+                                                          </next>
+                                                          <outer-class reference="../../../../../../../../../../../../../../../../../.."/>
+                                                        </next>
+                                                        <outer-class reference="../../../../../../../../../../../../../../../../.."/>
+                                                      </next>
+                                                      <outer-class reference="../../../../../../../../../../../../../../../.."/>
+                                                    </next>
+                                                    <outer-class reference="../../../../../../../../../../../../../../.."/>
+                                                  </next>
+                                                  <outer-class reference="../../../../../../../../../../../../../.."/>
+                                                </next>
+                                                <outer-class reference="../../../../../../../../../../../../.."/>
+                                              </next>
+                                              <outer-class reference="../../../../../../../../../../../.."/>
+                                            </next>
+                                            <outer-class reference="../../../../../../../../../../.."/>
+                                          </next>
+                                          <outer-class reference="../../../../../../../../../.."/>
+                                        </next>
+                                        <outer-class reference="../../../../../../../../.."/>
+                                      </next>
+                                      <outer-class reference="../../../../../../../.."/>
+                                    </next>
+                                    <outer-class reference="../../../../../../.."/>
+                                  </next>
+                                  <outer-class reference="../../../../../.."/>
+                                </next>
+                                <outer-class reference="../../../../.."/>
+                              </next>
+                              <outer-class reference="../../../.."/>
+                            </next>
+                            <outer-class reference="../../.."/>
+                          </next>
+                          <outer-class reference="../.."/>
+                        </head>
+                      </seats>
+                      <cost>290</cost>
+                    </data>
+                    <outer-class reference="../.."/>
+                  </head>
+                </bookings>
               </data>
               <next>
                 <data class="Theatre.Performance">

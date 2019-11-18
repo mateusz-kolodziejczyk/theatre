@@ -77,6 +77,7 @@ public class SeatArrangement {
             }
             // If its occupied, go to the next one
             if(seatSection[i].isOccupied()){
+                continuousSeatList.removeAll();
                 continue;
             }
             continuousSeatList.addFront(seatSection[i]);
@@ -87,6 +88,35 @@ public class SeatArrangement {
         }
         // If not enough seats were found, return new empty list
         return new TheatreLinkedList<>();
+     }
+
+     public Seat[] getSection(char section){
+        switch (section){
+            case 's':
+                return stalls;
+            case 'c':
+                return circle;
+            case 'b':
+                return balcony;
+            default:
+                return new Seat[0];
+        }
+     }
+
+     public Seat getSeat(String seatName){
+        // Section name
+         char section = seatName.charAt(0);
+         int seatIndex = Integer.parseInt(seatName.substring(1))-1;
+        switch (section){
+            case 's':
+                return stalls[seatIndex];
+            case 'c':
+                return circle[seatIndex];
+            case 'b':
+                return balcony[seatIndex];
+            default:
+                return null;
+        }
      }
 
 }

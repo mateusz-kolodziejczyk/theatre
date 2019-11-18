@@ -66,10 +66,9 @@ public class MainViewController {
     public TreeView<String> theatreData;
     // General variables
     private TheatreLinkedList<Show> shows = new TheatreLinkedList<>();
-    public static Show bookingShow;
-    public static Performance bookingPerformance;
-    public static String bookingName;
-
+    static Performance bookingPerformance;
+    static String bookingName;
+    static boolean updateBooking;
 
     @FXML
     public void addShow() {
@@ -134,26 +133,13 @@ public class MainViewController {
            bookSeatsPerformance.getItems().add(performance) ;
         }
     }
-    @FXML
-    public void deleteShow() {
-
-    }
-
-    @FXML
-    public void deletePerformance() {
-
-    }
-
-    @FXML
-    public void deleteBooking() {
-
-    }
 
     @FXML
     public void deleteItem() {
         var currentItem = theatreData.getSelectionModel().getSelectedItem();
         var chosenShow = new Show();
-        // Needed to prevent an exception
+        // The root item isnt a specific show or anything
+        // Without this it would try to delete it and raise an error
         if (currentItem.equals(theatreData.getRoot())) {
             return;
         }
@@ -164,17 +150,16 @@ public class MainViewController {
             showItem = showItem.getParent();
         }
         for (var show : shows) {
-            if (showItem.equals(show.toString())) {
+            if (showItem.getValue().equals(show.toString())) {
                 chosenShow = show;
             }
         }
+        if(currentItem.equals(showItem)){
+            // Checking if its the show itself
+            shows.removeItem(chosenShow);
+        }
         for (var item : theatreData.getRoot().getChildren()) {
             if (item.equals(showItem)) {
-                if(currentItem.equals(showItem)){
-                    // Checking if its the show itself
-                    shows.removeItem(chosenShow);
-                    return;
-                }
                 for (var performanceItem : item.getChildren()) {
                     // If the selected item is a performance
                     if (performanceItem.equals(currentItem)) {
@@ -195,11 +180,6 @@ public class MainViewController {
         }
         // Update list afterwards
         updateTheatreData();
-    }
-
-    @FXML
-    public void updateBooking() {
-
     }
 
     @FXML
@@ -270,15 +250,24 @@ public class MainViewController {
 
     @FXML
     public void bookSeats() throws Exception {
+      launchSeatGrid();
+    }
+
+    private void launchSeatGrid() throws Exception{
         bookingName = bookSeatsName.getText();
-        bookingShow = bookSeatsShow.getValue();
         bookingPerformance = bookSeatsPerformance.getValue();
 
         Parent root = FXMLLoader.load(getClass().getResource("seatgrid.fxml"));
-        Scene scene = new Scene(root, 500, 500);
+        Scene scene = new Scene(root, 800, 800);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    public void updateBooking() throws Exception{
+        updateBooking = true;
+        launchSeatGrid();
     }
 
 

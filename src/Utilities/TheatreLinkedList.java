@@ -33,6 +33,17 @@ public class TheatreLinkedList<T> implements Iterable<T>{
 
     }
 
+    public boolean contains(T data){
+            var tempNode = head;
+            for (;tempNode != null;){
+                if(tempNode.data == data){
+                    return true;
+                }
+                tempNode = tempNode.next;
+            }
+            return false;
+    }
+
     public boolean isEmpty(){
         if(head == null){
             return true;
