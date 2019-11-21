@@ -61,6 +61,14 @@ public class MainViewController {
     @FXML
     public TextField bookSeatsName;
 
+    // Update Booking fields
+    @FXML
+    public ChoiceBox<Show> updateBookingShow;
+    @FXML
+    public ChoiceBox<Performance> updateBookingPerformance;
+    @FXML
+    public ChoiceBox<Booking> updateBookingBooking;
+
     // Theatre data fields
     @FXML
     public TreeView<String> theatreData;
@@ -68,7 +76,8 @@ public class MainViewController {
     private TheatreLinkedList<Show> shows = new TheatreLinkedList<>();
     static Performance bookingPerformance;
     static String bookingName;
-    static boolean updateBooking;
+    static boolean isUpdatingBooking;
+    static Booking booking;
 
     @FXML
     public void addShow() {
@@ -128,9 +137,17 @@ public class MainViewController {
 
     @FXML
     public void bookSeatsUpdatePerformances() {
-        bookSeatsPerformance.getItems().clear();
-        for (var performance:bookSeatsShow.getValue().getPerformances()) {
-           bookSeatsPerformance.getItems().add(performance) ;
+        if(bookSeatsShow.getValue() == null){
+            return;
+        }
+        updateChoiceBox(bookSeatsPerformance, bookSeatsShow.getValue().getPerformances());
+    }
+
+    // Update date in choicebox based on another choicebox
+    private <T> void updateChoiceBox(ChoiceBox<T> choiceBox, TheatreLinkedList<T> dataList){
+        choiceBox.getItems().clear();
+        for (var data:dataList) {
+            choiceBox.getItems().add(data);
         }
     }
 
@@ -228,6 +245,33 @@ public class MainViewController {
     }
 
     @FXML
+    public void updateBookingUpdatePerformances(){
+        // To prevent a null pointer
+        if(updateBookingShow.getValue() == null){
+            return;
+        }
+        updateChoiceBox(updateBookingPerformance, updateBookingShow.getValue().getPerformances());
+    }
+    @FXML
+    public void updateBookingUpdateBookings(){
+        // To prevent a null pointer
+        if(updateBookingPerformance.getValue() == null){
+            return;
+        }
+        updateChoiceBox(updateBookingBooking, updateBookingPerformance.getValue().getBookings());
+    }
+
+    @FXML
+    public void updateBookingStart(){
+        updateBookingShow.getItems().clear();
+        for(var show: shows){
+            updateBookingShow.getItems().add(show);
+        }
+        updateBookingPerformance.getItems().clear();
+        updateBookingBooking.getItems().clear();
+    }
+
+    @FXML
     public void load() throws Exception {
         XStream xstream = new XStream(new DomDriver());
         ObjectInputStream is = xstream.createObjectInputStream(new FileReader("shows.xml"));
@@ -250,13 +294,11 @@ public class MainViewController {
 
     @FXML
     public void bookSeats() throws Exception {
-      launchSeatGrid();
-    }
-
-    private void launchSeatGrid() throws Exception{
         bookingName = bookSeatsName.getText();
         bookingPerformance = bookSeatsPerformance.getValue();
-
+        launchSeatGrid();
+    }
+    private void launchSeatGrid() throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("seatgrid.fxml"));
         Scene scene = new Scene(root, 800, 800);
         Stage stage = new Stage();
@@ -264,9 +306,11 @@ public class MainViewController {
         stage.show();
     }
 
+
     @FXML
     public void updateBooking() throws Exception{
-        updateBooking = true;
+        isUpdatingBooking = true;
+        booking = updateBookingBooking.getValue();
         launchSeatGrid();
     }
 

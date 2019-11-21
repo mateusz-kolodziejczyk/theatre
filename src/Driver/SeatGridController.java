@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import jdk.swing.interop.DropTargetContextWrapper;
 
 public class SeatGridController {
     @FXML
@@ -24,12 +23,12 @@ public class SeatGridController {
 
     public void initialize(){
         // If updatebooking is true, set up the seats so that the seats in the booking are not disabled
-        setUpSeats(stalls, 4, 10, 's', MainViewController.updateBooking);
-        setUpSeats(circle, 3, 10, 'c', MainViewController.updateBooking);
-        setUpSeats(balcony, 3, 8, 'b', MainViewController.updateBooking);
+        setUpSeats(stalls, 4, 10, 's', MainViewController.isUpdatingBooking);
+        setUpSeats(circle, 3, 10, 'c', MainViewController.isUpdatingBooking);
+        setUpSeats(balcony, 3, 8, 'b', MainViewController.isUpdatingBooking);
     }
 
-    private void setUpSeats(GridPane section, int rows, int perRow, char letter, boolean updateBooking){
+    private void setUpSeats(GridPane section, int rows, int perRow, char letter, boolean isUpdatingBooking){
         for(Node child:section.getChildren()){
             var column = GridPane.getColumnIndex(child);
             var row = GridPane.getRowIndex(child);
@@ -44,8 +43,14 @@ public class SeatGridController {
             var seatNumber = (rows-row)*perRow+column;
             var seatName = Character.toString(letter) + seatNumber;
             var seatButton = (ToggleButton) child;
-            if(MainViewController.bookingPerformance.getSeatArrangement().getSeat(seatName).isOccupied()){
+            var seat = MainViewController.bookingPerformance.getSeatArrangement().getSeat(seatName);
+            if(seat.isOccupied()){
+                // In either case set the button to selected
                 seatButton.setSelected(true);
+                // If the function is set to update a booking, do not set the buttons to 'disabled'
+                if(isUpdatingBooking && MainViewController.booking.getSeats().contains(seat)){
+                    continue;
+                }
                 seatButton.setDisable(true);
             }
         }

@@ -232,7 +232,7 @@
                               <ChoiceBox fx:id="bookSeatsPerformance" layoutX="54.0" layoutY="10.0" prefHeight="25.0" prefWidth="206.0" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0">
+                        <HBox alignment="CENTER" prefHeight="54.0" prefWidth="600.0">
                            <children>
                               <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#bookSeatsUpdatePerformances" prefHeight="25.0" prefWidth="137.0" text="Update Performances">
                                  <HBox.margin>
@@ -241,7 +241,7 @@
                               </Button>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="35.0" prefHeight="62.0" prefWidth="600.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="35.0" prefHeight="0.0" prefWidth="600.0">
                            <children>
                               <Label text="Name">
                                  <padding>
@@ -324,6 +324,98 @@
                </children></AnchorPane>
       </content>
     </Tab>
+      <Tab onSelectionChanged="#updateBookingStart" text="Update Booking">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox layoutY="14.0" prefHeight="387.0" prefWidth="600.0">
+                     <children>
+                        <HBox prefHeight="37.0" prefWidth="600.0">
+                           <children>
+                              <Label layoutX="20.0" layoutY="10.0" text="Show">
+                                 <padding>
+                                    <Insets top="2.5" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ChoiceBox fx:id="updateBookingShow" prefHeight="25.0" prefWidth="161.0" />
+                              <Label layoutX="20.0" layoutY="10.0" text="Performance">
+                                 <padding>
+                                    <Insets top="2.5" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ChoiceBox fx:id="updateBookingPerformance" layoutX="54.0" layoutY="10.0" prefHeight="25.0" prefWidth="206.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="15.0" prefWidth="600.0">
+                           <children>
+                              <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#updateBookingUpdatePerformances" prefHeight="25.0" prefWidth="137.0" text="Update Performances">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="35.0" prefHeight="34.0" prefWidth="600.0">
+                           <children>
+                              <Label text="Booking">
+                                 <padding>
+                                    <Insets top="2.5" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ChoiceBox fx:id="updateBookingBooking" prefHeight="25.0" prefWidth="180.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="600.0">
+                           <children>
+                              <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#updateBookingUpdateBookings" prefHeight="25.0" prefWidth="137.0" text="Update Bookings">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="233.0" prefWidth="600.0">
+                           <children>
+                              <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#updateBooking" prefHeight="34.0" prefWidth="96.0" text="Update">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <MenuBar prefHeight="27.0" prefWidth="158.0">
+                           <menus>
+                              <Menu mnemonicParsing="false" text="File">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#save" text="Save" />
+                                    <MenuItem mnemonicParsing="false" onAction="#load" text="Load" />
+                                 </items>
+                              </Menu>
+                              <Menu mnemonicParsing="false" text="Edit">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" onAction="#reset" text="Reset" />
+                                 </items>
+                              </Menu>
+                           </menus>
+                        </MenuBar>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
       <Tab onSelectionChanged="#updateTheatreData" text="Theatre Data">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
