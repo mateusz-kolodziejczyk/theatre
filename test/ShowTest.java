@@ -15,7 +15,7 @@ public class ShowTest {
     @BeforeAll
     public static void before() {
         show = new Show("The Lion King",
-                LocalDate.of(2019, 9, 1), LocalDate.of(2019, 10, 1),
+                LocalDate.of(2019, 9, 1), LocalDate.of(2019, 10, 1), 200,
                 20, 15, 10);
     }
     @Test

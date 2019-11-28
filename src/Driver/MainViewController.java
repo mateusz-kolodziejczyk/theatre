@@ -36,6 +36,8 @@ public class MainViewController {
     public TextField addShowStallsPrice;
     @FXML
     public Label addShowError;
+	@FXML
+	public TextField addShowRunTime;
 
     // Add performance fields
     @FXML
@@ -76,7 +78,7 @@ public class MainViewController {
     private TheatreLinkedList<Show> shows = new TheatreLinkedList<>();
     static Performance bookingPerformance;
     static String bookingName;
-    static boolean isUpdatingBooking;
+    static boolean isUpdatingBooking = false;
     static Booking booking;
 
     @FXML
@@ -87,7 +89,8 @@ public class MainViewController {
                 || addShowCirclePrice.getText().equals("")
                 || addShowStallsPrice.getText().equals("")
                 || addShowStartDate.getValue() == null
-                || addShowEndDate.getValue() == null) {
+                || addShowEndDate.getValue() == null
+				|| addShowRunTime.getText().equals("")) {
             addShowError.setText("Not all fields are set. Please fill out all the fields");
             return;
         }
@@ -96,13 +99,14 @@ public class MainViewController {
             addShowError.setText("Start date has to be before or the same as the end date");
             return;
         }
-        var show = new Show(addShowName.getText(), addShowStartDate.getValue(), addShowEndDate.getValue(),
+        var show = new Show(addShowName.getText(), addShowStartDate.getValue(), addShowEndDate.getValue(), Integer.parseInt(addShowRunTime.getText()),
                 Integer.parseInt(addShowBalconyPrice.getText()), Integer.parseInt(addShowCirclePrice.getText()), Integer.parseInt(addShowStallsPrice.getText()));
         shows.addFront(show);
         addShowName.clear();
         addShowBalconyPrice.clear();
         addShowCirclePrice.clear();
         addShowStallsPrice.clear();
+		addShowRunTime.clear();
         addShowStartDate.getEditor().clear();
         addShowEndDate.getEditor().clear();
         addShowError.setText("");
@@ -296,6 +300,7 @@ public class MainViewController {
     public void bookSeats() throws Exception {
         bookingName = bookSeatsName.getText();
         bookingPerformance = bookSeatsPerformance.getValue();
+		isUpdatingBooking = false;
         launchSeatGrid();
     }
     private void launchSeatGrid() throws Exception{
@@ -309,8 +314,9 @@ public class MainViewController {
 
     @FXML
     public void updateBooking() throws Exception{
-        isUpdatingBooking = true;
-        booking = updateBookingBooking.getValue();
+		isUpdatingBooking = true;
+		bookingPerformance = updateBookingPerformance.getValue();
+		booking = updateBookingBooking.getValue();
         launchSeatGrid();
     }
 

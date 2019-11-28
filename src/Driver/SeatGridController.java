@@ -58,11 +58,17 @@ public class SeatGridController {
     @FXML
     public void bookSeats(){
         var seatList = new TheatreLinkedList<String>();
-        // Looks through every section and adds tot he list
+        // Looks through every section and adds to the list
         seatList = bookSeatsLoop(stalls, 4, 10, 's', seatList);
         seatList = bookSeatsLoop(circle, 3, 10, 'c', seatList);
         seatList = bookSeatsLoop(balcony, 3, 8, 'b', seatList);
-        MainViewController.bookingPerformance.makeBooking(MainViewController.bookingName, seatList);
+        // If updating booking change booking
+        if(MainViewController.isUpdatingBooking){
+            MainViewController.bookingPerformance.updateBooking(seatList, MainViewController.booking);
+        }
+        else{
+            MainViewController.bookingPerformance.makeBooking(MainViewController.bookingName, seatList);
+        }
         var stage = (Stage) balcony.getScene().getWindow();
         stage.close();
     }

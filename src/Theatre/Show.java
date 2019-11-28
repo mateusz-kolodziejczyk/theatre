@@ -9,20 +9,23 @@ public class Show {
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
+	private int runTime;
     private TheatreLinkedList<Performance> performances = new TheatreLinkedList<>();
     private int balconyPrice;
     private int circlePrice;
     private int stallsPrice;
 
+
     public Show(){
 
     }
-    public Show(String name, LocalDate startDate, LocalDate endDate, int balconyPrice, int circlePrice, int stallsPrice){
+    public Show(String name, LocalDate startDate, LocalDate endDate, int runTime, int balconyPrice, int circlePrice, int stallsPrice){
         setName(name);
         // If the set failed, set it to unknown
         if(this.name == null){
             this.name = "Unknown";
         }
+		setRunTime(runTime);
 
         setStartDate(startDate);
         setEndDate(endDate);
@@ -108,6 +111,10 @@ public class Show {
 
     public void setBalconyPrice(int balconyPrice) {
         this.balconyPrice = balconyPrice;
+    }
+	
+	public void setRunTime(int runTime) {
+        this.runTime = runTime;
     }
 
     public int getCirclePrice() {

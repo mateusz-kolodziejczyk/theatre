@@ -48,6 +48,7 @@ public class Booking {
     }
 
     public void updateCost(){
+        cost = 0;
         for (Seat seat: seats) {
             cost+=seat.getSeatPrice();
         }

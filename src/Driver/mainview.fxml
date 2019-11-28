@@ -57,7 +57,26 @@
                               <DatePicker fx:id="addShowEndDate" layoutX="294.0" layoutY="10.0" prefHeight="25.0" prefWidth="113.0" promptText="dd/mm/yyyy" />
                            </children>
                         </HBox>
-                        <Separator prefHeight="5.0" prefWidth="532.0" />
+                        <HBox layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="600.0">
+                           <children>
+                              <Label text="Running time(mins)">
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="5.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets top="2.5" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="addShowRunTime" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Separator prefHeight="5.0" prefWidth="532.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Separator>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="23.0" prefWidth="600.0" text="Seat Price" textAlignment="CENTER">
                            <font>
                               <Font size="18.0" />
@@ -97,7 +116,10 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <Separator prefWidth="200.0" />
+                        <Separator prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin></Separator>
                         <Label fx:id="addShowError" alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="600.0" textAlignment="CENTER" textFill="RED" />
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="243.0" prefWidth="600.0">
                            <children>

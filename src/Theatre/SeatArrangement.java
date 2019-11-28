@@ -20,25 +20,16 @@ public class SeatArrangement {
             int seatNumber = Integer.parseInt(seatName.substring(1));
             switch (seatName.charAt(0)) {
                 case 'b':
-                    //if the given seat isn't occupied
-                    if (!balcony[seatNumber - 1].isOccupied()) {
-                        balcony[seatNumber - 1].setOccupied(true);
-                        seatList.addFront(balcony[seatNumber - 1]);
-                    }
+                    balcony[seatNumber - 1].setOccupied(true);
+                    seatList.addFront(balcony[seatNumber - 1]);
                     break;
                 case 'c':
-                    //if the given seat isn't occupied
-                    if (!circle[seatNumber - 1].isOccupied()) {
-                        circle[seatNumber - 1].setOccupied(true);
-                        seatList.addFront(circle[seatNumber - 1]);
-                    }
+                    circle[seatNumber - 1].setOccupied(true);
+                    seatList.addFront(circle[seatNumber - 1]);
                     break;
                 case 's':
-                    //if the given seat isn't occupied
-                    if (!stalls[seatNumber - 1].isOccupied()) {
-                        stalls[seatNumber - 1].setOccupied(true);
-                        seatList.addFront(stalls[seatNumber - 1]);
-                    }
+                    stalls[seatNumber - 1].setOccupied(true);
+                    seatList.addFront(stalls[seatNumber - 1]);
                     break;
                 default:
                     break;
@@ -49,13 +40,13 @@ public class SeatArrangement {
 
     private void assignSeats(char seatLocation, Seat[] seatSection, int price) {
         for (int i = 0; i < seatSection.length; i++) {
-            seatSection[i] = new Seat(seatLocation, i+1, price);
+            seatSection[i] = new Seat(seatLocation, i + 1, price);
         }
 
-     }
+    }
 
-     public TheatreLinkedList<Seat> findContinuousSeats(char section, int number){
-        switch (section){
+    public TheatreLinkedList<Seat> findContinuousSeats(char section, int number) {
+        switch (section) {
             case 'b':
                 return continuousSeatsLoop(number, 8, balcony);
             case 'c':
@@ -65,33 +56,33 @@ public class SeatArrangement {
             default:
                 return new TheatreLinkedList<>();
         }
-     }
+    }
 
-     private TheatreLinkedList<Seat> continuousSeatsLoop(int number, int seatsPerRow, Seat[] seatSection){
+    private TheatreLinkedList<Seat> continuousSeatsLoop(int number, int seatsPerRow, Seat[] seatSection) {
         var continuousSeatList = new TheatreLinkedList<Seat>();
-        for (int i = 0; i < seatSection.length; i++){
+        for (int i = 0; i < seatSection.length; i++) {
             // If it's the first seat on the row
-            if(i % seatsPerRow == 0){
+            if (i % seatsPerRow == 0) {
                 // Reset linked list
                 continuousSeatList.removeAll();
             }
             // If its occupied, go to the next one
-            if(seatSection[i].isOccupied()){
+            if (seatSection[i].isOccupied()) {
                 continuousSeatList.removeAll();
                 continue;
             }
             continuousSeatList.addFront(seatSection[i]);
             // If the list is the desired length, return
-            if(continuousSeatList.size() >= number){
+            if (continuousSeatList.size() >= number) {
                 return continuousSeatList;
             }
         }
         // If not enough seats were found, return new empty list
         return new TheatreLinkedList<>();
-     }
+    }
 
-     public Seat[] getSection(char section){
-        switch (section){
+    public Seat[] getSection(char section) {
+        switch (section) {
             case 's':
                 return stalls;
             case 'c':
@@ -101,13 +92,13 @@ public class SeatArrangement {
             default:
                 return new Seat[0];
         }
-     }
+    }
 
-     public Seat getSeat(String seatName){
+    public Seat getSeat(String seatName) {
         // Section name
-         char section = seatName.charAt(0);
-         int seatIndex = Integer.parseInt(seatName.substring(1))-1;
-        switch (section){
+        char section = seatName.charAt(0);
+        int seatIndex = Integer.parseInt(seatName.substring(1)) - 1;
+        switch (section) {
             case 's':
                 return stalls[seatIndex];
             case 'c':
@@ -117,6 +108,6 @@ public class SeatArrangement {
             default:
                 return null;
         }
-     }
+    }
 
 }
